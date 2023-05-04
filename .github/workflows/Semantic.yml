@@ -1,0 +1,29 @@
+name: Git Semantic Version
+run-name: ${{ github.actor }} is testing out GitHub Actions with semantic version 🚀
+on: 
+  pull_request:
+    branches:
+      - main
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # important parameter
+      - name: Previous Git Tag
+  # You may pin to the exact commit or the version.
+  # uses: timfallmk/previous-git-tag-action@9b52a8d5deff8a8e31e97e260be7801cf37fcc00
+        uses: timfallmk/previous-git-tag-action@0.0.1
+      - name: Git Semantic Version
+        id: versioning
+        uses: PaulHatch/semantic-version@v5.0.3
+        with:
+          branch: main
+          tag_prefix: "v"
+          major_pattern: "BREAKING CHANGE:"
+          minor_pattern: "feat:"
+          version_format: "v${major}.${minor}.${patch}-prerelease${increment}"  
+          search_commit_body: true
+          bump_each_commit: true
