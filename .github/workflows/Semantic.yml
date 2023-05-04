@@ -1,7 +1,7 @@
 name: Git Semantic Version
 run-name: ${{ github.actor }} is testing out GitHub Actions with semantic version 🚀
 on: 
-  pull_request:
+  push:
     branches:
       - main
 jobs:
